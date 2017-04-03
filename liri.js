@@ -20,7 +20,7 @@ inquirer.prompt([
 
   	} else if (confData.selections == "spotify-this-song") {
   		console.log('working2...');
-  		// all of the spotify code will go
+  		// all of the spotify code will go here
 
 
 
