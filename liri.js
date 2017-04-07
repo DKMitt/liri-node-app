@@ -16,8 +16,9 @@ inquirer.prompt([
   	
     if (confData.selections == "my-tweets") {
       console.log('')
-  		console.log('You selected... my-tweets');
-  		// all of the code for my-tweets goes here
+  		console.log(' You selected: my-tweets');
+  
+  // all of the code for my-tweets goes here
         
         var client = new Twitter(keys.twitterKeys);
          
@@ -28,11 +29,11 @@ inquirer.prompt([
             for (var i = 0; i < tweets.length; i++) {
               console.log('')
               console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-            	console.log('Tweet: ' + tweets[i].text)
+            	console.log(' Tweet: ' + tweets[i].text)
               console.log('')
-            	console.log("Tweet Number: " + (i+1))
+            	console.log(" Tweet Number: " + (i+1))
               console.log('')
-            	console.log('Created: ' + tweets[i].created_at)
+            	console.log(' Created: ' + tweets[i].created_at)
               console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
               console.log('')
             }
@@ -42,25 +43,41 @@ inquirer.prompt([
 
   	} else if (confData.selections == "spotify-this-song") {
       console.log('')
-  		console.log('You selected... spotify-this-song - Sorry but this selection is not active at this time');
-  		// all of the spotify code will go here
+  		console.log(' You selected: spotify-this-song - Sorry but this selection is not active at this time');
+  
+  // all of the spotify code will go here
+
+
+
+
+
+
 
 
 
   	} else if (confData.selections == "movie-this") {
       console.log('')
-  		console.log('You selected... movie-this');
-  		// all of the movie-this code goes here
+  		console.log(' You selected: movie-this');
+  
+  // all of the movie-this code goes here
 	
-			var query = "http://www.omdbapi.com/?t=cinderella";
+			var query = "http://www.omdbapi.com/?t=batman";
 			
 			request(query, function(error, response, body) {
 				if(!error && response) {
 
           console.log('')
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-					console.log("Release Year: " +JSON.parse(body)["Year"]);
+					console.log(" Name: " +JSON.parse(body)["Title"]);
+          console.log('')
+          console.log(" Release Year: " +JSON.parse(body)["Year"]);
+          console.log('')
+          console.log(" Plot: " +JSON.parse(body)["Plot"]);
           
+
+
+
+
 
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
           console.log('')
@@ -70,12 +87,24 @@ inquirer.prompt([
 
   	} else if (confData.selections == "do-what-it-says") {
       console.log('')
-  		console.log('You selected... do-what-it-says - Sorry but this selection is not active at this time');
-  		// all of the do-what-it-says code goes here
+  		console.log(' You selected: do-what-it-says - Sorry but this selection is not active at this time');
+  
+  // all of the do-what-it-says code goes here
+
+
+
+
+
+
+
+
+
 
 
   	} else {
       console.log('')
-  		console.log('i dont understand... you gave me bad input');
+  		console.log(' i dont understand... you gave me bad input');
   	}
   });
+
+
