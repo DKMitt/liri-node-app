@@ -61,7 +61,7 @@ inquirer.prompt([
   
   // all of the movie-this code goes here
 	
-			var query = "http://www.omdbapi.com/?t=batman";
+			var query = "http://www.omdbapi.com/?t=Mr=Nobody";
 			
 			request(query, function(error, response, body) {
 				if(!error && response) {
@@ -69,14 +69,14 @@ inquirer.prompt([
           console.log('')
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 					console.log(" Name: " +JSON.parse(body)["Title"]);
-          console.log('')
-          console.log(" Release Year: " +JSON.parse(body)["Year"]);
-          console.log('')
+          console.log(" Release Year: " +JSON.parse(body)["Released"]);
+          console.log(" IMDB Rating: " +JSON.parse(body)["imdbRating"]);
+          console.log(" Country: " +JSON.parse(body)["Country"]);
+          console.log(" Language: " +JSON.parse(body)["Language"]);
           console.log(" Plot: " +JSON.parse(body)["Plot"]);
-          
-
-
-
+          console.log(" Actors: " +JSON.parse(body)["Actors"]);
+          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["ratings[1].value"]);
+          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)["tURL"]);
 
 
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
