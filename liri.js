@@ -61,7 +61,7 @@ inquirer.prompt([
   
   // all of the movie-this code goes here
 	
-			var query = "http://www.omdbapi.com/?t=Mr=Nobody";
+			var query = "http://www.omdbapi.com/?t=Iron+Man&tomatoes=true";
 			
 			request(query, function(error, response, body) {
 				if(!error && response) {
@@ -75,8 +75,9 @@ inquirer.prompt([
           console.log(" Language: " +JSON.parse(body)["Language"]);
           console.log(" Plot: " +JSON.parse(body)["Plot"]);
           console.log(" Actors: " +JSON.parse(body)["Actors"]);
-          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["Ratings[1].Value"]);
-          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)[""]);
+          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["ratings[1].value"]); // working to pull ratings
+          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)[".tomatoURL"]); // used tomatoURL to verify im connecting
+          console.log(" Website URL: " +JSON.parse(body)["Website"]); // not needed for assignment
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
           console.log('')
 				}
