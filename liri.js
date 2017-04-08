@@ -49,10 +49,21 @@ inquirer.prompt([
   
   // all of the spotify code will go here
 
+    function spotifySong(song) {
+      spotify.search({
+        'type': 'track',
+        'query': song,
+        'limit': 1
+      }, function(error, data) {
+          if (error) {
+            console.log(error + '\n');
+          } else {
+              console.log('Artist: ' + data.tracks.items[0].album.artists[0].name);
+              
+          }
+      });
 
-
-
-
+    }
 
 
 
@@ -63,7 +74,7 @@ inquirer.prompt([
   
   // all of the movie-this code goes here
 	
-			var query = "http://www.omdbapi.com/?t=Iron+Man&tomatoes=true";
+			var query = "http://www.omdbapi.com/?t=Mr+Nobody&tomatoes=true";
 			
 			request(query, function(error, response, body) {
 				if(!error && response) {
@@ -77,9 +88,9 @@ inquirer.prompt([
           console.log(" Language: " +JSON.parse(body)["Language"]);
           console.log(" Plot: " +JSON.parse(body)["Plot"]);
           console.log(" Actors: " +JSON.parse(body)["Actors"]);
-          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["ratings[1].value"]); // working to pull ratings
-          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)[".tomatoURL"]); // used tomatoURL to verify im connecting
-          console.log(" Website URL: " +JSON.parse(body)["Website"]); // not needed for assignment
+          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["tomatoRating"]); // used to verify connection
+          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)["tomatoURL"]); // used to verify connection
+          console.log(" Website URL: " +JSON.parse(body)["Website"]); // not needed for assignment - test
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
           console.log('')
 				}
