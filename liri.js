@@ -1,5 +1,5 @@
 var keys = require("./keys.js");
-var inquirer = require("inquirer");
+var request = require("request");
 var request = require("request");
 var Twitter = require('twitter');
 var spotify = require("spotify");
@@ -34,10 +34,10 @@ var cmdInput = process.argv[2];
 
           case 'movie-this':
             if (args) {
-              movieDetails(args);
+              myMovieDetails(args);
             } else {
               var movie = process.argv.slice(3).join('+');
-              movieDetails(movie);
+              myMovieDetails(movie);
             }
             break;
 
@@ -105,7 +105,7 @@ var cmdInput = process.argv[2];
   
   // all of the movie-this code goes here
 
-    function movieDetails(movie) {
+    function myMovieDetails(movie) {
       var query = 'http://www.omdbapi.com/?t=' + movie + '&plot=short&r=json&tomatoes=true';
 
   		request(query, function(error, response, body) {
@@ -114,7 +114,7 @@ var cmdInput = process.argv[2];
           
           // if no movie entered use below movieDetails for movie
           if (movieDetails.Response === 'False') {
-            movieDetails('Mr. Nobody');
+            myMovieDetails('Mr. Nobody');
           } else {
           // sends data to console
           console.log('')
@@ -163,11 +163,5 @@ var cmdInput = process.argv[2];
 
       return true;
     }
-
-
-
-
-
-
 
 

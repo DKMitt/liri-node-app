@@ -4,3 +4,15 @@ node liri.js: do-what-it-says
 node liri.js: do-what-it-says
 node liri.js: do-what-it-says
 node liri.js: my-tweets
+node liri.js: movie-this
+node liri.js: movie-this
+node liri.js: movie-this
+node liri.js: movie-this
+node liri.js: movie-this
+node liri.js: movie-this mr bean
+node liri.js: do-what-it-says
+node liri.js: do-what-it-says
+node liri.js: movie-this
+node liri.js: spotify-this-song
+node liri.js: spotify-this-song cat scratch fever
+node liri.js: my-tweets
