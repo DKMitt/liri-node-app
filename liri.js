@@ -5,20 +5,7 @@ var Twitter = require('twitter');
 var spotify = require("spotify");
 
 
-inquirer.prompt([
-    {
-    type: "list",
-    message: "Whats would you like to do?",
-    choices: ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says"],
-    name: "selections"
-  }
 
-  ]).then(function(confData){
-  	// console.log(JSON.stringify(confData, null, 2));
-  	
-    if (confData.selections == "my-tweets") {
-      console.log('')
-  		console.log(' You selected: my-tweets');
   
   // all of the code for my-tweets goes here
         
@@ -43,9 +30,7 @@ inquirer.prompt([
         });
 
 
-  	} else if (confData.selections == "spotify-this-song") {
-      console.log('')
-  		console.log(' You selected: spotify-this-song - Sorry but this selection is not active at this time');
+ 
   
   // all of the spotify code will go here
 
@@ -54,12 +39,14 @@ inquirer.prompt([
         'type': 'track',
         'query': song,
         'limit': 1
-      }, function(error, data) {
+      }, function (error, data) {
           if (error) {
             console.log(error + '\n');
           } else {
               console.log('Artist: ' + data.tracks.items[0].album.artists[0].name);
-              
+              console.log('Song Name: ' + data.tracks.items[0].name);
+              console.log('Preview URL: ' + data.tracks.items[0].preview_url);
+              console.log('Album Name: ' + data.tracks.items[0].album.name);              
           }
       });
 
@@ -68,9 +55,7 @@ inquirer.prompt([
 
 
 
-  	} else if (confData.selections == "movie-this") {
-      console.log('')
-  		console.log(' You selected: movie-this');
+
   
   // all of the movie-this code goes here
 	
@@ -97,10 +82,7 @@ inquirer.prompt([
 			});
 
 
-  	} else if (confData.selections == "do-what-it-says") {
-      console.log('')
-  		console.log(' You selected: do-what-it-says - Sorry but this selection is not active at this time');
-  
+
   // all of the do-what-it-says code goes here
 
 
@@ -111,12 +93,5 @@ inquirer.prompt([
 
 
 
-
-
-  	} else {
-      console.log('')
-  		console.log(' i dont understand... you gave me bad input');
-  	}
-  });
 
 
