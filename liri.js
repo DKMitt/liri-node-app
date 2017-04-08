@@ -20,7 +20,7 @@ var cmdInput = process.argv[2];
 
           case 'spotify-this-song':
             if (args) {
-              console.log('Arg passed: ' + args);
+              console.log(' Argument passed: ' + args);
               spotifySong(args);
             } else {
               if (process.argv[3] != null) {
@@ -34,15 +34,15 @@ var cmdInput = process.argv[2];
 
           case 'movie-this':
             if (args) {
-              showMovieDetails(args);
+              movieDetails(args);
             } else {
               var movie = process.argv.slice(3).join('+');
-              showMovieDetails(movie);
+              movieDetails(movie);
             }
             break;
 
           case 'do-what-it-says':
-            executeFileCommand();
+            runCommand();
             break;
         }
       }
@@ -81,15 +81,22 @@ var cmdInput = process.argv[2];
       spotify.search({
         'type': 'track',
         'query': song,
-        'limit': 1
+        // 'limit': 1
       }, function (error, data) {
           if (error) {
-            console.log(error + '\n');
+            console.log(error + "\n");
           } else {
+              console.log('')
+              console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')            
               console.log('Artist: ' + data.tracks.items[0].album.artists[0].name);
+              console.log('')
               console.log('Song Name: ' + data.tracks.items[0].name);
+              console.log('')
               console.log('Preview URL: ' + data.tracks.items[0].preview_url);
-              console.log('Album Name: ' + data.tracks.items[0].album.name);              
+              console.log('')
+              console.log('Album Name: ' + data.tracks.items[0].album.name);  
+              console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+              console.log('')
           }
       });
 
@@ -97,41 +104,56 @@ var cmdInput = process.argv[2];
 
   
   // all of the movie-this code goes here
-	
-			var query = "http://www.omdbapi.com/?t=Mr+Nobody&tomatoes=true";
-			
-			request(query, function(error, response, body) {
-				if(!error && response) {
 
+    function movieDetails(movie) {
+      var query = 'http://www.omdbapi.com/?t=' + movie + '&plot=short&r=json&tomatoes=true';
+
+  		request(query, function(error, response, body) {
+  			if(!error && response.statusCode == 200) {
+          var movieDetails = JSON.parse(body);
+          
+          // if no movie entered use below movieDetails for movie
+          if (movieDetails.Response === 'False') {
+            movieDetails('Mr. Nobody');
+          } else {
+          // sends data to console
           console.log('')
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-					console.log(" Name: " +JSON.parse(body)["Title"]);
+					console.log(" Title: " +JSON.parse(body)["Title"]);
           console.log(" Release Year: " +JSON.parse(body)["Released"]);
           console.log(" IMDB Rating: " +JSON.parse(body)["imdbRating"]);
           console.log(" Country: " +JSON.parse(body)["Country"]);
           console.log(" Language: " +JSON.parse(body)["Language"]);
           console.log(" Plot: " +JSON.parse(body)["Plot"]);
           console.log(" Actors: " +JSON.parse(body)["Actors"]);
-          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["tomatoRating"]); // used to verify connection
-          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)["tomatoURL"]); // used to verify connection
+          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["tomatoRating"]);
+          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)["tomatoURL"]);
           console.log(" Website URL: " +JSON.parse(body)["Website"]); // not needed for assignment - test
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
           console.log('')
 				}
-			});
+        }
+      });
+
+    }
 
 
-
-  // all of the do-what-it-says code goes here
+    function runCommand() {
+      fs.readFile('random.txt', 'utf-8', function (error, data) {
+        var fileCommands = data.split(',');
+        getInput(fileCommands[0], fileCommands[1]);
+      });
+    }
 
 
     function logged() {
-      // read all command line inputs
+      // captures all command line inputs
       var inputs = process.argv.slice(2).join(" ");
 
       // feeeds the  data to the log file
-      console.log(inputs);
-      fs.appendFile("log.txt", "node liri.js"  + inputs + "\n", function (error) {
+      // console.log(inputs);
+      // appends data to the log file after each run
+      fs.appendFile("log.txt", "node liri.js: "  + inputs + "\n", function (error) {
         if (error) {
           throw error;
         } else {

@@ -1,2 +1,6 @@
-node liri.jsspotifySong chipmunk love
-node liri.jsspotifySong chipmunk love
+
+node liri.js: do-what-it-says
+node liri.js: do-what-it-says
+node liri.js: do-what-it-says
+node liri.js: do-what-it-says
+node liri.js: my-tweets
