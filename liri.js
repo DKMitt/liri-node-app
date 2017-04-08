@@ -75,10 +75,8 @@ inquirer.prompt([
           console.log(" Language: " +JSON.parse(body)["Language"]);
           console.log(" Plot: " +JSON.parse(body)["Plot"]);
           console.log(" Actors: " +JSON.parse(body)["Actors"]);
-          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["ratings[1].value"]);
-          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)["tURL"]);
-
-
+          console.log(" Rotten Tomatoes Rating: " +JSON.parse(body)["Ratings[1].Value"]);
+          console.log(" Rotten Tomatoes URL: " +JSON.parse(body)[""]);
           console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
           console.log('')
 				}
