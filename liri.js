@@ -3,12 +3,55 @@ var inquirer = require("inquirer");
 var request = require("request");
 var Twitter = require('twitter');
 var spotify = require("spotify");
+var fs = require('fs');
+
+var cmdInput = process.argv[2];
+
+  getInput (cmdInput);
 
 
+    function getInput(cmdInput, args) {
+      if (logged()) {
+        switch (cmdInput) {
 
-  
+          case 'my-tweets':
+            myTweets();
+            break;
+
+          case 'spotify-this-song':
+            if (args) {
+              console.log('Arg passed: ' + args);
+              spotifySong(args);
+            } else {
+              if (process.argv[3] != null) {
+                var song = process.argv.slice(3).join('+');
+                spotifySong(song);
+              } else {
+                spotifySong('The Sign');
+              }
+            }
+            break;
+
+          case 'movie-this':
+            if (args) {
+              showMovieDetails(args);
+            } else {
+              var movie = process.argv.slice(3).join('+');
+              showMovieDetails(movie);
+            }
+            break;
+
+          case 'do-what-it-says':
+            executeFileCommand();
+            break;
+        }
+      }
+    }
+
+
   // all of the code for my-tweets goes here
-        
+
+    function myTweets() {
         var client = new Twitter(keys.twitterKeys);
          
         var params = {screen_name: 'MittTechnology', count: 20};
@@ -29,9 +72,9 @@ var spotify = require("spotify");
           }
         });
 
+    }
 
- 
-  
+   
   // all of the spotify code will go here
 
     function spotifySong(song) {
@@ -51,10 +94,6 @@ var spotify = require("spotify");
       });
 
     }
-
-
-
-
 
   
   // all of the movie-this code goes here
@@ -86,7 +125,22 @@ var spotify = require("spotify");
   // all of the do-what-it-says code goes here
 
 
+    function logged() {
+      // read all command line inputs
+      var inputs = process.argv.slice(2).join(" ");
 
+      // feeeds the  data to the log file
+      console.log(inputs);
+      fs.appendFile("log.txt", "node liri.js"  + inputs + "\n", function (error) {
+        if (error) {
+          throw error;
+        } else {
+          console.log(" updated log file! ");
+        }
+      });
+
+      return true;
+    }
 
 
 
