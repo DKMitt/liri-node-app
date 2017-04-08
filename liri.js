@@ -2,6 +2,8 @@ var keys = require("./keys.js");
 var inquirer = require("inquirer");
 var request = require("request");
 var Twitter = require('twitter');
+var spotify = require("spotify");
+
 
 inquirer.prompt([
     {
