@@ -1,6 +1,5 @@
 var keys = require("./keys.js");
 var request = require("request");
-var request = require("request");
 var Twitter = require('twitter');
 var spotify = require("spotify");
 var fs = require('fs');
